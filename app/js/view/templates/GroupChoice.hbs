@@ -1,0 +1,16 @@
+<br>
+<br>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Action</th>
+  </tr>
+  {{#each this}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{description}}</td>
+    <td><button class="addToGroup" id={{id}}>Add to Group</button></td>
+  </tr>
+  {{/each}}
+</table>

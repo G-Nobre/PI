@@ -1,0 +1,39 @@
+{
+  "name": "trabpi1920",
+  "version": "1.0.0",
+  "description": "Repositório do Grupo 10:",
+  "main": "ciborg-server.js",
+  "config": {
+    "address": "localhost",
+    "port": "8080",
+    "secret": "This is a secret"
+  },
+  "scripts": {
+    "start": "node ciborg-server.js",
+    "start-dev": "nodemon ciborg-server.js",
+    "start-test": "node ciborg-server.js test",
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DSantos44774/PI-1920i-LI52D-G10.git"
+  },
+  "author": "PI-1920i-LI52D-G10",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DSantos44774/PI-1920i-LI52D-G10/issues"
+  },
+  "homepage": "https://github.com/DSantos44774/PI-1920i-LI52D-G10#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "mocha": "^6.2.2",
+    "nodemon": "^2.0.2",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "request": "^2.88.0"
+  }
+}

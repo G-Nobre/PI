@@ -1,0 +1,30 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Delete</th>
+  </tr>
+  {{#each this}}
+  <tr>
+    <td><a href='#gameDetails/{{name}}'>{{name}}</a></td>
+    <td><button class="delete" id={{id}}>Delete</button></td>
+  </tr>
+  {{/each}}
+</table>
+<br>
+
+<button id="edit">Edit</button><br>
+
+<form action="/edit" method="POST" id="form">
+  <input type="hidden" id="groupId" name="groupId">
+
+  <label id="name">Name:</label>
+  <input type="name" id="GroupName" name="name" required><br><br>
+
+  <div>
+      <label id="desc">Description :</label><br>
+      <textarea rows="4" cols="50" id="GroupDesc" name ="desc" required></textarea><br>
+  </div>
+    
+  <button type="submit">Confirm</button>
+</form>
+

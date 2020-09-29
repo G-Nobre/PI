@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "6d61528a-3706-49a6-99eb-21ce483ea24b",
+		"name": "Ciborg API",
+		"description": "Ciborg API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtain a Game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "844f9d3d-c404-4d7a-b0f4-df615c17568e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have 10 games\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.games.length).to.eql(10);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/games/search/spirit/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						"search",
+						"spirit",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Most Popular Games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3dad8293-9dd2-404c-93d7-ee4202bebbde",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Should have 5 games\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.games.length).to.eql(5);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/games/popularity/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"games",
+						"popularity",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a Game Group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "73b92435-4325-4487-a0d6-f42b9cdd904c",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Should have created group\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.result).to.eql('created');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"GameGroup\",\n\t\"decription\" : \"This is my game group\",\n\t\"games\" : []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Game Group",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"MyGameGroup\",\n\t\"decription\" : \"This is a good game Group\",\n\t\"games\" : []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc/m4ZE1m4BvZwwlHBazKt7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc",
+						"m4ZE1m4BvZwwlHBazKt7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all Game Groups",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\":{\n\t\t\"match_all\":{\n\t\t}\n\t}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add a Game to a Group",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc/m4ZE1m4BvZwwlHBazKt7/kPDxpJZ8PD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc",
+						"m4ZE1m4BvZwwlHBazKt7",
+						"kPDxpJZ8PD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove a Game from a Group",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc/m4ZE1m4BvZwwlHBazKt7/kPDxpJZ8PD",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc",
+						"m4ZE1m4BvZwwlHBazKt7",
+						"kPDxpJZ8PD"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain a Game Group Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/_doc/m4ZE1m4BvZwwlHBazKt7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"_doc",
+						"m4ZE1m4BvZwwlHBazKt7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtain games between a timeline in a group - Done",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/groups/m4ZE1m4BvZwwlHBazKt7/60/150",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"groups",
+						"m4ZE1m4BvZwwlHBazKt7",
+						"60",
+						"150"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
